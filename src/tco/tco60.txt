@@ -1,0 +1,96 @@
+
+Problem Statement
+    
+In genetics, most large animals have two copies of every gene - one from each parent. In the simplest genetic model, each of the genes takes on one of two forms, dominant or recessive, usually represented by an uppercase and lowercase letter of the same value, respectively ('A' and 'a', for example). The pair of genes typically contributes to the external qualities of the animal in one of two ways. If one or two genes are uppercase, the dominant gene is said to be expressed. If both genes are lowercase, then the recessive gene is said to be expressed.  Additionally, there may be some gene dependencies. If one pair of genes is dependent on another pair of genes, then the first gene may only be expressed dominantly if the gene it depends on is also expressed dominantly. These dependencies are indicated by a int[], dependencies. If element i of dependencies is j, it means that gene i can only be expressed dominantly if gene j also is (both i and j are indexed from 0). If gene j is expressed recessively, then gene i must be also, regardless of the actual genes at position i. If an element of dependencies is -1, it means that the gene is not dependent on any other gene, and is expressed as described in the first paragraph. Chains may exist within dependencies where i depends on j, which in turn depends on k. However, a gene may not depend on itself, and there will be no looping dependencies.  In this problem you are to predict a certain quality about an animal, given N pairs of genes from each of its parents, and some information about those N genes. The first parent's two copies of the genes are given by p1a and p1b, while the second parent's are given by p2a and p2b. For each of the N genes, each parent contributes one of its two genes to its children (characters with the same indices in p1a, p1b, p2a, and p2b correspond to the same gene). For example, if p1a = "ABC" and p1b = "abc", the first parent would contribute an 'A' or an 'a' to its child's first pair of genes, a 'B' or a 'b' to its child's second pair and so on. Similarly, the second parent would also contribute a single gene to its child's first pair of genes, one to its second pair and so on.  Thus, the offspring end up with N genes from each parent. Each pair of corresponding genes contributes in some way to a certain quality we are interested in. If the ith pair of genes is expressed dominantly, we add dom[i] to a running sum (which is initialized to 0), otherwise we add rec[i]. Given that each parent contributes one of its two genes entirely at random (with a 50% chance of either), you are to determine the expected value the offspring will have for the quality we are interested in (the running sum), and return that value.
+Definition
+    
+Class:
+GeneticCrossover
+Method:
+cross
+Parameters:
+String, String, String, String, int[], int[], int[]
+Returns:
+double
+Method signature:
+double cross(String p1a, String p1b, String p2a, String p2b, int[] dom, int[] rec, int[] dependencies)
+(be sure your method is public)
+    
+
+Notes
+-
+Your return must have a relative or absolute error less than 1e-9.
+Constraints
+-
+Let N be the number of genes, where N is between 1 and 50, inclusive.
+-
+p1a, p1b, p2a and p2b will each contain exactly N characters.
+-
+dom, rec, and dependencies will each contain exactly N elements.
+-
+Corresponding characters of p1a, p1b, p2a and p2b will have the same value (but may be uppercase or lowercase).
+-
+Each element of dependencies will be between -1 and N-1, inclusive.
+-
+dependencies will not contain any cycles.
+-
+Each element of dom and rec will be between -100 and 100, inclusive.
+Examples
+0)
+
+    
+"AaaAA"
+"AaaAA"
+"AaaAA"
+"AaaAA"
+{1,2,3,4,5}
+{-1,-2,-3,-4,-5}
+{-1,-1,-1,-1,1}
+Returns: -5.0
+Since every copy is the same, the animal is guaranteed to have two pairs of "AaaAA". This means that the first and fourth genes will be dominantly expressed, while the others will be recessively expressed. Note that the last gene is dependent on gene 1, which is recessively expressed.
+1)
+
+    
+"AbegG"
+"ABEgG"
+"aBEgg"
+"abegG"
+{5,5,5,5,5}
+{1,1,1,1,1}
+{-1,0,1,2,3}
+Returns: 14.25
+Here, we have a chain of dependencies, where gene 1 depends on gene 0, 2 depends on 1, and so on. For the first gene, the animal is guaranteed to get an 'A' from its first parent, and an 'a' from its second parent. This means that gene 0 will be expressed dominantly, contributing 5 to the sum. The next gene has a 75% chance of being expressed dominantly (it will only be expressed recessively if a 'b' comes from each parent). The third gene also has a 75% chance of being expressed dominantly, assuming that the second gene was expressed dominantly. The fourth gene is guaranteed to be expressed recessively, and hence so is the final gene.  This gives us 3 possible scenarios, denoted below, where a 'D' indicates a gene is expressed dominantly, and an 'R' means recessively: 
+Genes | Sum | Prob
+------+-----+-------
+DDDRR | 17  | 0.5625
+DDRRR | 13  | 0.1875
+DRRRR | 9   | 0.25
+The expected value is thus 17*0.5625+13*0.1875+9*.25 = 14.25
+2)
+
+    
+"XyMpdnVsbinDvqBpcWGDLfsmQtZpeirvTmoRmBASfqqrFS"
+"xYmpdnVsBINdvQBPCwgDlFSmQTzpEIrVtmoRmbaSfqQRfS"
+"XYMpdnvsBINdVQbpCWgDlfSMqTzPeIrVTMOrmbaSfQqrFs"
+"XYMpDnVSBIndvQBPCWGDlFsMqtzpEiRVTMORMBASFqQrfS"
+{-82,-35,-51,52,87,25,8,27,-12,-10,-63,-36,-95,-35,-98,95,-76,7,36,-35,92,23,-94,
+ -31,-30,36,51,-49,-19,-3,19,32,58,82,-36,-87,-54,-17,-40,32,-91,-56,0,-16,70,42}
+{-36,77,90,50,83,66,-94,-66,-22,-83,-86,-89,-55,-3,-51,18,-41,-91,91,32,-25,-60,
+ 5,79,100,85,60,98,55,95,-67,-46,-26,48,-64,16,-36,-95,-54,19,96,79,78,-91,-12,35}
+{-1,-1,1,-1,3,-1,-1,1,3,5,4,0,-1,-1,2,8,5,4,-1,10,11,14,3,-1,
+15,-1,7,-1,8,-1,-1,15,-1,-1,30,-1,26,26,-1,-1,-1,-1,-1,31,0,3}
+Returns: -356.875
+
+3)
+
+    
+"fOai"
+"Foai"
+"fOAI"
+"FOAi"
+{96,21,-34,-81}
+{77,-2,20,25}
+{-1,0,-1,-1}
+Returns: 44.5
+
+This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.

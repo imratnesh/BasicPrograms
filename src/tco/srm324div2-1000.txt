@@ -1,0 +1,58 @@
+Problem Statement
+    
+A company wants to generate cost advantage by bundling its products, which means that several products are sold in a package. In order to compose bundles optimally, the company has collected data about which products were bought from customers.
+Your company produces n products. You will be given a String[] data, each element of which contains exactly n characters. The jth character of element i of data will be '1' if customer i bought product j, and '0' otherwise. Two products can be in the same bundle only if every customer bought neither of them or both of them. It is possible for a bundle to contain just one product. Return the minimum number of bundles into which the products can be partitioned. Note that every product must be put in some bundle.
+Definition
+    
+Class:
+ProductBundling
+Method:
+howManyBundles
+Parameters:
+String[]
+Returns:
+int
+Method signature:
+int howManyBundles(String[] data)
+(be sure your method is public)
+Limits
+    
+Time limit (s):
+2.000
+Memory limit (MB):
+64
+Constraints
+-
+data will contain between 1 and 50 elements, inclusive.
+-
+Each element of data will contain between 1 and 50 characters, inclusive.
+-
+Each element of data will contain the same number of characters.
+Examples
+0)
+
+    
+{"11100"}
+Returns: 2
+In this example, only data from one customer is available. Two bundles can be composed, the first containing the first three products, the second containing the last two products.
+1)
+
+    
+{"1010",
+ "1100"}
+Returns: 4
+No two products can be put into the same bundle, therefore 4 bundles are needed.
+2)
+
+    
+{"1100000000",
+ "1100000000",
+ "0011000000",
+ "0011000000",
+ "0000110000",
+ "0000110000",
+ "0000001100",
+ "0000001100",
+ "0000000011",
+ "0000000011"}
+Returns: 5

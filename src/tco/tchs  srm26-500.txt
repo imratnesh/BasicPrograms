@@ -1,0 +1,75 @@
+Problem Statement
+    
+Uncompress the given string s in the following manner: 
+Find a section that matches the pattern "k(q)" (quotes for clarity only), 
+where k is a single digit, the two parentheses are a matching set, 
+and q is zero or more characters. Replace the entire section with k consecutive occurrences of q. 
+Repeat this process until there are no more such patterns. Return the length of the uncompressed string.
+Definition
+    
+Class:
+CompressedString
+Method:
+getLength
+Parameters:
+String
+Returns:
+int
+Method signature:
+int getLength(String s)
+(be sure your method is public)
+Limits
+    
+Time limit (s):
+2.000
+Memory limit (MB):
+64
+Constraints
+-
+s will contain between 0 and 50 characters, inclusive.
+-
+s will contain only digits ('0'-'9') and parentheses ('(',')').
+-
+The parentheses in s will be properly matched.
+-
+Each opening parenthesis ('(') in s will be preceded by a digit ('0'-'9').
+-
+The return value will be less than or equal to 2147483647.
+Examples
+0)
+
+    
+"123"
+Returns: 3
+
+1)
+
+    
+"10342(76)"
+Returns: 8
+The uncompressed string is "10347676" (quotes for clarity only).
+2)
+
+    
+"33(562(71(9)))"
+Returns: 19
+The uncompressed string is "3567979567979567979" (quotes for clarity only).
+
+3
+3)
+
+    
+"0(0)"
+Returns: 0
+
+4)
+
+    
+"1(1(1(1(1(1(1(0(1234567890))))))))"
+Returns: 0
+
+5)
+
+    
+"1()66(5)"
+Returns: 7

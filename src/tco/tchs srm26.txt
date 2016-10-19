@@ -1,0 +1,82 @@
+Problem Statement
+    
+You want to buy a certain set of items. The shop offers you a discount percent discount on every third item you buy. Therefore, you want to purchase the items in an order that will minimize the total cost.
+Given a int[] prices containing the prices of the desired items and an int discount, return the minimal amount of money you must have in order to buy all the items.
+Definition
+    
+Class:
+ThirdBuyDiscount
+Method:
+minCost
+Parameters:
+int[], int
+Returns:
+double
+Method signature:
+double minCost(int[] prices, int discount)
+(be sure your method is public)
+Limits
+    
+Time limit (s):
+2.000
+Memory limit (MB):
+64
+Notes
+-
+Your return value must have an absolute or relative error less than 1e-9.
+Constraints
+-
+discount will be between 0 and 100, inclusive.
+-
+prices will contain between 0 and 50 elements, inclusive.
+-
+Each element of prices will be between 0 and 2147483647, inclusive.
+Examples
+0)
+
+    
+{50, 20, 30, 17, 100}
+10
+Returns: 207.0
+One of the possible optimal sequences is {20, 30, 100, 17, 50}. So, the total cost is 20 + 30 + 0.9 * 100 + 17 + 50 = 207.
+1)
+
+    
+{1,2,3,4,5,6,7}
+100
+Returns: 15.0
+The discount is 100%, a fantastic bargain for the consumer. Make the item with price 6 the third item you buy, and the item with price 7 the sixth.
+2)
+
+    
+{100,40,23,592,582,19435739,204857,0}
+0
+Returns: 1.9641933E7
+There is no discount, so the total cost is always equal to the sum of all the original prices.
+3)
+
+    
+{999,111,888,1238,52009,419,0,0,43,0,11,4,2,348,10039586,1000000,203985157}
+37
+Returns: 1.355019587E8
+
+4)
+
+    
+{100,304,50607,2024,6046,708}
+75
+Returns: 17299.25
+
+5)
+
+    
+{1}
+50
+Returns: 1.0
+
+6)
+
+    
+{}
+100
+Returns: 0.0

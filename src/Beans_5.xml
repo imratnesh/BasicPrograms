@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+
+
+    <bean id="helloWorld" class="com.listener.HelloWorld">
+        <property name="message"  value="HELLO World!"></property>
+    </bean>
+    <bean id="startlistener"  class="com.listener.CStartEventListener"></bean>
+    <bean id="stoplistenr" class="com.listener.CStopEventListener"></bean>
+    
+    
+    
+    <!--My custom event-->
+    <bean id="customEventHandler" class="com.listener.CustomEventHandler"></bean>
+    
+    <bean id="customEventPublisher" class="com.listener.CustomEventPublisher"></bean>
+    
+</beans>
